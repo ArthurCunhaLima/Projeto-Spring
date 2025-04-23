@@ -1,11 +1,10 @@
-package com.projeto.entity;
+package com.projeto.repository.entity;
 
 import jakarta.persistence.*;
 
 import java.util.List;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
 @Entity
@@ -81,17 +80,29 @@ public class Monstro {
         this.HP = novoHP;
     }
     public String getUltimate(){
+
         return this.nomeUltimate;
     }
     public int getDanoUltimate(){
+
         return this.danoUltimate;
     }
     public String getNomeAtaque(){
+
         return this.nomeAtaque;
     }
     public int getDanoAtaque(){
+
         return this.danoAtaque;
     }
 
+    @Override
+    public String toString(){
+        return "nome : "+ this.nome + "\n" +
+                "HP : " + this.HP + "\n" +
+                "NomeAtaque : " + this.nomeAtaque + "\n"
+        ;
+
+    }
 }
 

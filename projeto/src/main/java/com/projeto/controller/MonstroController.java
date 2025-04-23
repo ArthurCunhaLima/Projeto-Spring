@@ -1,15 +1,16 @@
 package com.projeto.controller;
 
+import com.projeto.repository.entity.Monstro;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(method = RequestMethod.GET ,value = "/monstros")
 public class MonstroController {
+    Monstro monstro = new Monstro();
+    @GetMapping(value = "/testar")
+    public String Monstro(){
 
-    @GetMapping
+    }
     public String listarMonstros() {
         return "LISTANDO OS MONSTROS...";
     }
