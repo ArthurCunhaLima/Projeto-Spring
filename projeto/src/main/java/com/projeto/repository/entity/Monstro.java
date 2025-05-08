@@ -67,9 +67,10 @@ public class Monstro {
         this.nomeAtaque = arrayNomesAtaques.get(dadoMonstro);
     }
 
-    public String getNomeMonstro(){
+    public String getNome(){
         return this.nome;
     }
+
     public List<String> getArrayNomesMonstros(){
         return arrayNomesMonstros;
     }
@@ -80,28 +81,25 @@ public class Monstro {
         this.HP = novoHP;
     }
     public String getUltimate(){
-
         return this.nomeUltimate;
     }
     public int getDanoUltimate(){
-
         return this.danoUltimate;
     }
     public String getNomeAtaque(){
-
         return this.nomeAtaque;
     }
     public int getDanoAtaque(){
-
         return this.danoAtaque;
     }
-
     @Override
     public String toString(){
         return "nome : "+ this.nome + "\n" +
                 "HP : " + this.HP + "\n" +
-                "NomeAtaque : " + this.nomeAtaque + "\n"
-        ;
+                "NomeAtaque : " + this.nomeAtaque + "\n" +
+                "DanoAtaque : " + this.danoAtaque + "\n" +
+                "nomeUltimate : " + this.nomeUltimate + "\n" +
+                "DanoUltimate : " + this.danoUltimate + "\n";
 
     }
 }
