@@ -1,0 +1,48 @@
+*{
+    font-family: 'Press Start 2P', cursive;
+}
+h1{
+    color: white;
+}
+body{
+    margin: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: black;
+}
+.interface{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #003366;
+    padding: 10px 20px;
+    font-size: 24px;
+    min-width: 200px;
+    width: 50%;
+    border-radius: 150px;
+    height: 125px;
+}
+.interface .informacao{
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+    color: black;
+    color: white;
+}
+.botaoAtaque{
+    display: block;
+    background-color: white;
+    transition: 1s;
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    border: 2px solid black;
+    margin:  auto;
+}
+.botaoAtaque:hover{
+    transform: scale(0.9);
+    cursor: pointer;
+}

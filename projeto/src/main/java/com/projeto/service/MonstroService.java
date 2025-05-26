@@ -23,6 +23,15 @@ public class MonstroService {
             "Banshee Lamentosa",
             "Hidra Venenosa"
     );
+    private static final List<String> arrayEndPointMonstros = Arrays.asList(
+            "dragao",
+            "espectro",
+            "gorgona",
+            "kraken",
+            "golem",
+            "banshee",
+            "hidra"
+    );
     private static final List<Integer> arrayHP = Arrays.asList(
             180,
             150,
@@ -57,6 +66,7 @@ public class MonstroService {
         int dadoMonstro = aleatorizar.nextInt(arrayNomesMonstros.size()-1);
 
         Monstro monstro = new Monstro();
+        monstro.setEndpoint(arrayEndPointMonstros.get(dadoMonstro));
         monstro.setNome(arrayNomesMonstros.get(dadoMonstro));
         monstro.setHP(arrayHP.get(dadoMonstro));
         monstro.setNomeAtaque(arrayNomesAtaques.get(dadoMonstro));

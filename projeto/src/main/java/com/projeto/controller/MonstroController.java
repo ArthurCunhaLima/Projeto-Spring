@@ -23,7 +23,13 @@ public class MonstroController {
     public String retornarMonstro(){
         return monstroService.getmonstroAtual().toString();
     }
+    @GetMapping("/iniciar-jogo")
+    public String iniciarJogo() {
 
-
-
+        String nomePaginaMonstro = monstroService.getmonstroAtual().getEndpoint();
+        return "redirect:/battles/" + nomePaginaMonstro + "/index";
     }
+
+
+
+}

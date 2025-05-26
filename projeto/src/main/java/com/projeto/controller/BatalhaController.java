@@ -3,9 +3,10 @@ package com.projeto.controller;
 import com.projeto.service.BatalhaService;
 import com.projeto.service.JogadorService;
 import com.projeto.service.MonstroService;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 @RequestMapping("batalha")
 public class BatalhaController {
     private final MonstroService monstroService;
@@ -25,5 +26,19 @@ public class BatalhaController {
     @PutMapping("ataqueMonstro")
     public String ataqueMonstro(){
         return batalhaService.monstroAtaque(jogadorService.getJogador(),monstroService.getmonstroAtual());
+    }
+    @GetMapping("home")
+    public String home(){
+        return "home/index";
+    }
+
+
+    @GetMapping("banshee")
+    public String bansheeBattle(){
+        return "battles/banshee/index";
+    }
+    @GetMapping("dragao")
+    public String dragaoBattle(){
+        return "battles/dragao/index";
     }
 }

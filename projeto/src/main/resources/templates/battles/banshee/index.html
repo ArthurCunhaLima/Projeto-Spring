@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="PT-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banshee Lamentosa</title>
+    <link rel="stylesheet" th:href="@{/battles/style.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Banshee Lamentosa</h1>
+    <img th:src="@{/battles/bansheeLamentosa.png}" alt="Imagem da Batalha" width="1024" height="1024">
+    <div class="interface">
+        <div class="informacao">
+            <p>ATAQUE</p>
+            <p> : PLACEHOLDER DAMAGE</p>
+        </div>
+        <div class="informacao">
+            <p>HP</p>
+            <p id ="hp"></p>
+        </div>
+    </div>
+    <ul>
+        <li>
+        <h1>CLIQUE NO CÍRCULO PARA ATACAR</h1>
+        <a href="" class="botaoAtaque"></a>
+        </li>
+    </ul>
+
+    <script>
+        function atualizarHP() {
+            fetch('/jogador/retornarHP')
+                .then(res => res.text())
+                .then(hp => {
+                    document.getElementById('hp').innerText = hp;
+                });
+
+        window.onload = function() {
+        atualizarHP;
+        };
+
+        setInterval(atualizarHP, 2000);
+
+    </script>
+</body>
+</html>

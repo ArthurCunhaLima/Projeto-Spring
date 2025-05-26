@@ -14,7 +14,16 @@ public class Monstro {
     private int danoUltimate = 100;
     private String nomeAtaque;
     private int danoAtaque = 30;
+    private String endpoint;
 
+
+    public String getEndpoint() {
+        return endpoint;
+    }
+
+    public void setEndpoint(String endpoint) {
+        this.endpoint = endpoint;
+    }
 
     public String getNome(){
         return this.nome;
@@ -75,7 +84,8 @@ public class Monstro {
                 "NomeAtaque : " + this.nomeAtaque + "\n" +
                 "DanoAtaque : " + this.danoAtaque + "\n" +
                 "nomeUltimate : " + this.nomeUltimate + "\n" +
-                "DanoUltimate : " + this.danoUltimate + "\n";
+                "DanoUltimate : " + this.danoUltimate + "\n" +
+                "Endpoint : " + this.endpoint;
 
     }
 }
