@@ -2,6 +2,7 @@ package com.projeto.controller;
 
 
 import com.projeto.service.MonstroService;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,13 +24,5 @@ public class MonstroController {
     public String retornarMonstro(){
         return monstroService.getmonstroAtual().toString();
     }
-    @GetMapping("/iniciar-jogo")
-    public String iniciarJogo() {
-
-        String nomePaginaMonstro = monstroService.getmonstroAtual().getEndpoint();
-        return "redirect:/battles/" + nomePaginaMonstro + "/index";
-    }
-
-
 
 }

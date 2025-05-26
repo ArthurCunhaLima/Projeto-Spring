@@ -71,7 +71,6 @@ public class MonstroService {
         monstro.setHP(arrayHP.get(dadoMonstro));
         monstro.setNomeAtaque(arrayNomesAtaques.get(dadoMonstro));
         monstro.setNomeUltimate(arrayNomesUltimates.get(dadoMonstro));
-
         this.monstroAtual = monstro;
         return "Monstro Criado!!";
         }

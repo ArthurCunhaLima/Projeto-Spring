@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dragão Flamejante</title>
+    <title>Golem de Obsidiana</title>
     <link rel="stylesheet" th:href="@{/battles/style.css}">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
@@ -12,17 +12,33 @@
     <img th:src="@{/battles/golemObsidiana.png}" alt="Imagem da Batalha" width="1024" height="1024">
     <div class="interface">
         <div class="informacao">
-            <p>ATAQUE</p>
-            <p> : PLACEHOLDER DAMAGE</p>
+            <p>ATAQUE: </p>
+            <p> 30  </p>
+            <p class="textoCritico"> (1/3 Chance de Crítico)</p>
         </div>
         <div class="informacao">
-            <p>HP</p>
-            <p> : PLACEHOLDER HP</p>
+            <p>HP: </p>
+            <p id="hp"></p>
         </div>
     </div>
-    <h1>CLIQUE NO CÍRCULO PARA ATACAR</h1>
-    <a href="" class="botaoAtaque">
-    </a>
+    <ul>
+        <li>
+            <h1>CLIQUE NO CÍRCULO PARA ATACAR</h1>
+            <a href="" class="botaoAtaque"></a>
+        </li>
+    </ul>
 
+    <script>
+        function atualizarHP() {
+            fetch('/jogador/retornarHP')
+                .then(res => res.text())
+                .then(hp => {
+                    document.getElementById('hp').innerText = hp;
+                });
+        }
+
+        atualizarHP();
+        setInterval(atualizarHP, 2000);
+    </script>
 </body>
 </html>

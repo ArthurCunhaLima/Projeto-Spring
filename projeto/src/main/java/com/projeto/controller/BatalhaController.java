@@ -18,27 +18,24 @@ public class BatalhaController {
         this.jogadorService = jogadorService;
         this.batalhaService = batalhaService;
     }
-
-    @PutMapping("ataqueJogador")
-    public String ataquejogador(@RequestParam int dano){
-        return batalhaService.jogadorAtaque(monstroService.getmonstroAtual(), dano ) + "\n" + monstroService.getStatus() ;
-    }
-    @PutMapping("ataqueMonstro")
-    public String ataqueMonstro(){
-        return batalhaService.monstroAtaque(jogadorService.getJogador(),monstroService.getmonstroAtual());
-    }
     @GetMapping("home")
-    public String home(){
+    public String home() {
         return "home/index";
     }
+    @GetMapping("/iniciar-jogo")
+    public String iniciarJogo() {
+        monstroService.gerarMonstroAleatorio();
+        String nomePaginaMonstro = monstroService.getmonstroAtual().getEndpoint();
+        return "redirect:/batalha/" + nomePaginaMonstro;
+    }
+
+    @GetMapping("{nomeMonstro}")
+    public String batalhaMonstro(@PathVariable String nomeMonstro) {
+        return "battles/" + nomeMonstro + "/index";
+    }
 
 
-    @GetMapping("banshee")
-    public String bansheeBattle(){
-        return "battles/banshee/index";
-    }
-    @GetMapping("dragao")
-    public String dragaoBattle(){
-        return "battles/dragao/index";
-    }
+
+
+
 }
