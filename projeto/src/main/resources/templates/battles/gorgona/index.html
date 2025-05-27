@@ -10,6 +10,7 @@
 <body>
     <h1>Górgona Petrificadora</h1>
     <img th:src="@{/battles/gorgonaPetrificadora.png}" alt="Imagem da Batalha" width="1024" height="1024">
+    <div id="logTurno"></div>
     <div class="interface">
         <div class="informacao">
             <p>ATAQUE: </p>
@@ -18,15 +19,16 @@
         </div>
         <div class="informacao">
             <p>HP: </p>
-            <p id="hp"></p>
+            <p id ="hp"></p>
         </div>
     </div>
     <ul>
         <li>
             <h1>CLIQUE NO CÍRCULO PARA ATACAR</h1>
-            <a href="" class="botaoAtaque"></a>
+            <a href="" class="botaoAtaque" onclick="executarTurno(event)"></a>
         </li>
     </ul>
+
 
     <script>
         function atualizarHP() {
@@ -35,6 +37,29 @@
                 .then(hp => {
                     document.getElementById('hp').innerText = hp;
                 });
+        }
+
+        function executarTurno(event) {
+            event.preventDefault(); // evita recarregar a página
+
+            fetch('/batalharetorno/turno', {
+                method: 'PUT'
+            })
+            .then(res => res.text())
+            .then(texto => {
+                document.getElementById('logTurno').innerText = texto;
+                atualizarHP();
+
+                if (texto.includes("") || texto.includes("O Monstro está MORTO")) {
+                    document.getElementById('logTurno').innerText += "\n🟢 Indo para a próxima fase...";
+                    setTimeout(() => {
+                        window.location.href = "/batalha/proximaFase";
+                    }, 2000);
+                }
+            })
+            .catch(err => {
+                document.getElementById('logTurno').innerText = "Erro no turno: " + err.message;
+            });
         }
 
         atualizarHP();

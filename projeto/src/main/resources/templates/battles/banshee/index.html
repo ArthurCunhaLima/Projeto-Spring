@@ -10,6 +10,8 @@
 <body>
     <h1>Banshee Lamentosa</h1>
     <img th:src="@{/battles/bansheeLamentosa.png}" alt="Imagem da Batalha" width="1024" height="1024">
+
+    <div id="logTurno"></div>
     <div class="interface">
         <div class="informacao">
             <p>ATAQUE: </p>
@@ -24,9 +26,10 @@
     <ul>
         <li>
         <h1>CLIQUE NO CÍRCULO PARA ATACAR</h1>
-        <a href="" class="botaoAtaque"></a>
+        <a href="" class="botaoAtaque" onclick="executarTurno(event)"></a>
         </li>
     </ul>
+
 
     <script>
         function atualizarHP() {
@@ -34,6 +37,44 @@
                 .then(res => res.text())
                 .then(hp => {
                     document.getElementById('hp').innerText = hp;
+                });
+        }
+
+        function verificarFimDeBatalha() {
+            fetch('/monstro/retornarHP')
+                .then(res => res.text())
+                .then(hpMonstro => {
+                    const hpM = parseInt(hpMonstro);
+                    if (hpM <= 0) {
+                        document.getElementById('logTurno').innerText += "\ Monstro derrotado!!";
+                        setTimeout(() => {
+                            window.location.href = "/batalha/finalizar";
+                        }, 2000);
+                    } else {
+                        fetch('/jogador/retornarHP')
+                            .then(res => res.text())
+                            .then(hpJogador => {
+                                const hpJ = parseInt(hpJogador);
+                                if (hpJ <= 0) {
+                                    document.getElementById('logTurno').innerText += "Você foi derrotado!! Fim de jogo.";
+                                }
+                            });
+                    }
+                });
+        }
+
+        function executarTurno(event) {
+            event.preventDefault();
+
+            fetch('/batalharetorno/turno', { method: 'PUT' })
+                .then(res => res.text())
+                .then(texto => {
+                    document.getElementById('logTurno').innerText = texto;
+                    atualizarHP();
+                    verificarFimDeBatalha();
+                })
+                .catch(err => {
+                    document.getElementById('logTurno').innerText = "Erro no turno: " + err.message;
                 });
         }
 

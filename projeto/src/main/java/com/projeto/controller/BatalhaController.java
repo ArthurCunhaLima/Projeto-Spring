@@ -13,6 +13,9 @@ public class BatalhaController {
     private final JogadorService jogadorService;
     private final BatalhaService batalhaService;
 
+
+
+
     public BatalhaController (JogadorService jogadorService, MonstroService monstroService, BatalhaService batalhaService){
         this.monstroService = monstroService;
         this.jogadorService = jogadorService;
@@ -34,8 +37,9 @@ public class BatalhaController {
         return "battles/" + nomeMonstro + "/index";
     }
 
-
-
-
+    @GetMapping("finalizar")
+    public String finalizar(){
+        return "/finalizar/index";
+    }
 
 }

@@ -22,7 +22,7 @@ public class JogadorService {
             this.jogador = null;
             return "Jogador Perdeu, Fim de Jogo";
         }else {
-            return "Jogador com " + jogador.getHP();
+            return "";
         }
     }
 

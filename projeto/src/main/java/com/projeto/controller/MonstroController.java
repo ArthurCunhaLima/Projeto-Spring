@@ -24,5 +24,9 @@ public class MonstroController {
     public String retornarMonstro(){
         return monstroService.getmonstroAtual().toString();
     }
+    @GetMapping("retornarHP")
+    public int retornarHP(){
+        return monstroService.getmonstroAtual().getHP();
+    }
 
 }

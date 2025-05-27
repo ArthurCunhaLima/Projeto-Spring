@@ -79,14 +79,15 @@ public class MonstroService {
         }
     }
     public Monstro getmonstroAtual(){
-            return this.monstroAtual;
+        return this.monstroAtual;
         }
+
     public String getStatus(){
         if (!monstroAtual.Vivo() || monstroAtual.getHP() <= 0){
             this.monstroAtual = null;
-            return "O Monstro foi MORTO";
+            return "Monstro Morreu!!";
         }else {
-            return "O Monstro está VIVO";
+            return "";
         }
     }
 }

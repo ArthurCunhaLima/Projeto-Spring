@@ -36,9 +36,26 @@
                     document.getElementById('hp').innerText = hp;
                 });
         }
+        function executarTurno(event) {
+            event.preventDefault();
+
+            fetch('/batalharetorno/turno', {
+                method: 'PUT'
+            })
+            .then(res => res.text())
+            .then(texto => {
+                document.getElementById('logTurno').innerText = texto;
+                atualizarHP();
+            })
+            .catch(err => {
+                document.getElementById('logTurno').innerText = "Erro no turno: " + err.message;
+            });
+        }
 
         atualizarHP();
         setInterval(atualizarHP, 2000);
+
+
     </script>
 </body>
 </html>

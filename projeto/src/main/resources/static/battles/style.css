@@ -50,3 +50,9 @@ body{
     transform: scale(0.9);
     cursor: pointer;
 }
+#logTurno{
+    margin:20px;
+    font-size: 20px;
+    color:white;
+    width: 1024px;
+}
