@@ -27,7 +27,7 @@ public class MonstroController {
     @GetMapping("retornarHP")
     public int retornarHP() {
         if (monstroService.getmonstroAtual() == null) {
-            return 0; // Retorna 0 se não houver monstro atual
+            return 0;
         }
         return monstroService.getmonstroAtual().getHP();
     }
