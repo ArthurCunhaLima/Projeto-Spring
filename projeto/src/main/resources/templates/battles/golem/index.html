@@ -10,10 +10,11 @@
 <body>
     <h1>Golem de Obsidiana</h1>
 
-    <div class="informacao">
-        <p>HP do Monstro:</p>
-        <p id="hpMonstro"></p>
+    <div>
+        <p class="hpMonstro">HP do Monstro:</p>
+        <p class="hpMonstro" id="hpMonstro"></p>
     </div>
+
 
 
     <img th:src="@{/battles/golemObsidiana.png}" alt="Imagem da Batalha" width="1024" height="1024">
@@ -37,27 +38,39 @@
     </ul>
 
     <script>
+        const botaoAtaque = document.querySelector('.botaoAtaque');
+        let batalhaEncerrada = false;
+
         function atualizarJogadorHP() {
             fetch('/jogador/retornarHP')
                 .then(res => res.text())
                 .then(hp => {
-                    document.getElementById('hpJogador').innerText = hp;
+                    const hpFormatado = Math.max(parseInt(hp), 0);
+                    document.getElementById('hpJogador').innerText = hpFormatado;
                 });
         }
-        function atualizarMonstroHP() {
+
+       function atualizarMonstroHP() {
             fetch('/monstro/retornarHP')
                 .then(res => res.text())
-                .then(hp => {
-                    document.getElementById('hpMonstro').innerText = hp;
+                .then(hpMonstro => {
+                    const hpFormatadoMonstro = Math.max(parseInt(hpMonstro), 0);
+                    document.getElementById('hpMonstro').innerText = hpFormatadoMonstro;
                 });
         }
+
         function verificarFimDeBatalha() {
             fetch('/monstro/retornarHP')
                 .then(res => res.text())
                 .then(hpMonstro => {
-                    const hpM = parseInt(hpMonstro);
+                    const hpM = Math.max(parseInt(hpMonstro), 0);
+                    document.getElementById('hpMonstro').innerText = hpM;
+
                     if (hpM <= 0) {
-                        document.getElementById('logTurno').innerText += "\n Monstro derrotado!!";
+                        document.getElementById('logTurno').innerText += "\nMonstro derrotado!!";
+                        botaoAtaque.style.pointerEvents = 'none';
+                        botaoAtaque.style.opacity = '0.5';
+                        batalhaEncerrada = true;
                         setTimeout(() => {
                             window.location.href = "/batalha/finalizar";
                         }, 2000);
@@ -65,37 +78,40 @@
                         fetch('/jogador/retornarHP')
                             .then(res => res.text())
                             .then(hpJogador => {
-                                const hpJ = parseInt(hpJogador);
+                                const hpJ = Math.max(parseInt(hpJogador), 0);
+                                document.getElementById('hpJogador').innerText = hpJ;
+
                                 if (hpJ <= 0) {
                                     document.getElementById('logTurno').innerText += "\nVocê foi derrotado!! Fim de jogo.";
+                                    botaoAtaque.style.pointerEvents = 'none';
+                                    botaoAtaque.style.opacity = '0.5';
+                                    batalhaEncerrada = true;
                                     setTimeout(() => {
                                         window.location.href = "/batalha/finalizar";
-                                    }, 2000);
+                                    }, 3500);
                                 }
                             });
                     }
                 });
         }
 
-        function executarTurno(event) {
-            event.preventDefault();
+            function executarTurno(event) {
+                event.preventDefault();
 
-            fetch('/batalharetorno/turno', { method: 'PUT' })
-                .then(res => res.text())
-                .then(texto => {
-                    document.getElementById('logTurno').innerText = texto;
-                    atualizarJogadorHP();
-                    atualizarMonstroHP();
-                    verificarFimDeBatalha();
-                })
-                .catch(err => {
-                    document.getElementById('logTurno').innerText = "Erro no turno: " + err.message;
-                });
-        }
-        atualizarMonstroHP();
-        setInterval(atualizarHPMonstro, 2000);
-        atualizarJogadorHP();
-        setInterval(atualizarHPJogador, 2000);
+                fetch('/batalharetorno/turno', { method: 'PUT' })
+                    .then(res => res.text())
+                    .then(texto => {
+                        document.getElementById('logTurno').innerText = texto;
+                        atualizarJogadorHP();
+                        atualizarMonstroHP();
+                        verificarFimDeBatalha();
+                    })
+                    .catch(err => {
+                        document.getElementById('logTurno').innerText = "Erro no turno: " + err.message;
+                    });
+            }
+            atualizarMonstroHP();
+            atualizarJogadorHP();
     </script>
 </body>
 </html>

@@ -8,6 +8,11 @@
 #logTurno{
     text-align: center ;
 }
+.hpMonstro{
+    color:white;
+    display: inline-block;
+}
+
 h1{
     color: white;
 }
