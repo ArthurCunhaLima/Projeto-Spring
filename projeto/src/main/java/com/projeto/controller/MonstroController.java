@@ -1,8 +1,6 @@
 package com.projeto.controller;
 
-
 import com.projeto.service.MonstroService;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,13 +18,17 @@ public class MonstroController {
     public String gerarMonstro() {
         return monstroService.gerarMonstroAleatorio();
     }
+
     @GetMapping("retornar")
-    public String retornarMonstro(){
+    public String retornarMonstro() {
         return monstroService.getmonstroAtual().toString();
     }
+
     @GetMapping("retornarHP")
-    public int retornarHP(){
+    public int retornarHP() {
+        if (monstroService.getmonstroAtual() == null) {
+            return 0; // Retorna 0 se não houver monstro atual
+        }
         return monstroService.getmonstroAtual().getHP();
     }
-
 }
