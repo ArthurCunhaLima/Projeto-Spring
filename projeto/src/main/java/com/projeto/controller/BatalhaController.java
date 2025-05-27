@@ -27,6 +27,9 @@ public class BatalhaController {
     }
     @GetMapping("/iniciar-jogo")
     public String iniciarJogo() {
+        jogadorService.resetar();
+        monstroService.resetar();
+        
         monstroService.gerarMonstroAleatorio();
         String nomePaginaMonstro = monstroService.getmonstroAtual().getEndpoint();
         return "redirect:/batalha/" + nomePaginaMonstro;
@@ -39,7 +42,7 @@ public class BatalhaController {
 
     @GetMapping("finalizar")
     public String finalizar(){
-        return "/finalizar/index";
+        return "finalizar/index";
     }
 
 }

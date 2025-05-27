@@ -25,6 +25,10 @@ public class JogadorService {
             return "";
         }
     }
+    public void resetar() {
+        this.jogador = new Jogador();
+    }
+
 
 
     public int getJogadorHP() {

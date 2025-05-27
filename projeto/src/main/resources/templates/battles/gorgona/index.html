@@ -30,6 +30,7 @@
     </ul>
 
 
+
     <script>
         function atualizarHP() {
             fetch('/jogador/retornarHP')
@@ -39,27 +40,45 @@
                 });
         }
 
+        function verificarFimDeBatalha() {
+            fetch('/monstro/retornarHP')
+                .then(res => res.text())
+                .then(hpMonstro => {
+                    const hpM = parseInt(hpMonstro);
+                    if (hpM <= 0) {
+                        document.getElementById('logTurno').innerText += "\n Monstro derrotado!!";
+                        setTimeout(() => {
+                            window.location.href = "/batalha/finalizar";
+                        }, 2000);
+                    } else {
+                        fetch('/jogador/retornarHP')
+                            .then(res => res.text())
+                            .then(hpJogador => {
+                                const hpJ = parseInt(hpJogador);
+                                if (hpJ <= 0) {
+                                    document.getElementById('logTurno').innerText += "\nVocê foi derrotado!! Fim de jogo.";
+                                    setTimeout(() => {
+                                        window.location.href = "/batalha/finalizar";
+                                    }, 2000);
+                                }
+                            });
+                    }
+                });
+        }
+
         function executarTurno(event) {
-            event.preventDefault(); // evita recarregar a página
+            event.preventDefault();
 
-            fetch('/batalharetorno/turno', {
-                method: 'PUT'
-            })
-            .then(res => res.text())
-            .then(texto => {
-                document.getElementById('logTurno').innerText = texto;
-                atualizarHP();
-
-                if (texto.includes("") || texto.includes("O Monstro está MORTO")) {
-                    document.getElementById('logTurno').innerText += "\n🟢 Indo para a próxima fase...";
-                    setTimeout(() => {
-                        window.location.href = "/batalha/proximaFase";
-                    }, 2000);
-                }
-            })
-            .catch(err => {
-                document.getElementById('logTurno').innerText = "Erro no turno: " + err.message;
-            });
+            fetch('/batalharetorno/turno', { method: 'PUT' })
+                .then(res => res.text())
+                .then(texto => {
+                    document.getElementById('logTurno').innerText = texto;
+                    atualizarHP();
+                    verificarFimDeBatalha();
+                })
+                .catch(err => {
+                    document.getElementById('logTurno').innerText = "Erro no turno: " + err.message;
+                });
         }
 
         atualizarHP();

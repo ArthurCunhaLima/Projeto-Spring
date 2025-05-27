@@ -82,6 +82,10 @@ public class MonstroService {
         return this.monstroAtual;
         }
 
+    public void resetar() {
+        this.monstroAtual = null;
+    }
+
     public String getStatus(){
         if (!monstroAtual.Vivo() || monstroAtual.getHP() <= 0){
             this.monstroAtual = null;

@@ -31,6 +31,7 @@
     </ul>
 
 
+
     <script>
         function atualizarHP() {
             fetch('/jogador/retornarHP')
@@ -46,7 +47,7 @@
                 .then(hpMonstro => {
                     const hpM = parseInt(hpMonstro);
                     if (hpM <= 0) {
-                        document.getElementById('logTurno').innerText += "\ Monstro derrotado!!";
+                        document.getElementById('logTurno').innerText += "\n Monstro derrotado!!";
                         setTimeout(() => {
                             window.location.href = "/batalha/finalizar";
                         }, 2000);
@@ -56,7 +57,10 @@
                             .then(hpJogador => {
                                 const hpJ = parseInt(hpJogador);
                                 if (hpJ <= 0) {
-                                    document.getElementById('logTurno').innerText += "Você foi derrotado!! Fim de jogo.";
+                                    document.getElementById('logTurno').innerText += "\nVocê foi derrotado!! Fim de jogo.";
+                                    setTimeout(() => {
+                                        window.location.href = "/batalha/finalizar";
+                                    }, 2000);
                                 }
                             });
                     }
