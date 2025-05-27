@@ -9,6 +9,13 @@
 </head>
 <body>
     <h1>Górgona Petrificadora</h1>
+
+    <div class="informacao">
+        <p>HP do Monstro:</p>
+        <p id="hpMonstro"></p>
+    </div>
+
+
     <img th:src="@{/battles/gorgonaPetrificadora.png}" alt="Imagem da Batalha" width="1024" height="1024">
     <div id="logTurno"></div>
     <div class="interface">
@@ -19,7 +26,7 @@
         </div>
         <div class="informacao">
             <p>HP: </p>
-            <p id ="hp"></p>
+            <p id ="hpJogador"></p>
         </div>
     </div>
     <ul>
@@ -32,14 +39,20 @@
 
 
     <script>
-        function atualizarHP() {
+        function atualizarJogadorHP() {
             fetch('/jogador/retornarHP')
                 .then(res => res.text())
                 .then(hp => {
-                    document.getElementById('hp').innerText = hp;
+                    document.getElementById('hpJogador').innerText = hp;
                 });
         }
-
+        function atualizarMonstroHP() {
+            fetch('/monstro/retornarHP')
+                .then(res => res.text())
+                .then(hp => {
+                    document.getElementById('hpMonstro').innerText = hp;
+                });
+        }
         function verificarFimDeBatalha() {
             fetch('/monstro/retornarHP')
                 .then(res => res.text())
@@ -73,16 +86,18 @@
                 .then(res => res.text())
                 .then(texto => {
                     document.getElementById('logTurno').innerText = texto;
-                    atualizarHP();
+                    atualizarJogadorHP();
+                    atualizarMonstroHP();
                     verificarFimDeBatalha();
                 })
                 .catch(err => {
                     document.getElementById('logTurno').innerText = "Erro no turno: " + err.message;
                 });
         }
-
-        atualizarHP();
-        setInterval(atualizarHP, 2000);
+        atualizarMonstroHP();
+        setInterval(atualizarHPMonstro, 2000);
+        atualizarJogadorHP();
+        setInterval(atualizarHPJogador, 2000);
     </script>
 </body>
 </html>

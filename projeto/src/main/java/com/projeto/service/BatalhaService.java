@@ -29,7 +29,7 @@ public class BatalhaService {
         int resultado = girarDado.nextInt(1, 3);
         if (resultado == 1){
             monstro.setHP(monstro.getHP() - 70);
-            return "CRÍTICO!!!!! \nHP do Monstro :" + monstro.getHP();
+            return "VOCê DEU UM ATAQUE CRÍTICO!!!!! \nHP do Monstro :" + monstro.getHP();
         }else{
         monstro.setHP(monstro.getHP() - 30);
         return "Ataque Realizado!! \nHP do Monstro :" + monstro.getHP();

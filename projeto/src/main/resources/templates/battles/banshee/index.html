@@ -8,9 +8,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Banshee Lamentosa</h1>
-    <img th:src="@{/battles/bansheeLamentosa.png}" alt="Imagem da Batalha" width="1024" height="1024">
+    <h1 class="nomeMonstro">Banshee Lamentosa</h1>
 
+    <div class="informacao">
+        <p>HP do Monstro:</p>
+        <p id="hpMonstro"></p>
+    </div>
+
+    <img th:src="@{/battles/bansheeLamentosa.png}" alt="Imagem da Batalha" width="1024" height="1024">
     <div id="logTurno"></div>
     <div class="interface">
         <div class="informacao">
@@ -19,8 +24,8 @@
             <p class="textoCritico"> (1/3 Chance de Crítico)</p>
         </div>
         <div class="informacao">
-            <p>HP: </p>
-            <p id ="hp"></p>
+            <p>HP do Jogador: </p>
+            <p id ="hpJogador"></p>
         </div>
     </div>
     <ul>
@@ -33,14 +38,20 @@
 
 
     <script>
-        function atualizarHP() {
+        function atualizarJogadorHP() {
             fetch('/jogador/retornarHP')
                 .then(res => res.text())
                 .then(hp => {
-                    document.getElementById('hp').innerText = hp;
+                    document.getElementById('hp').innerText = hpJogador;
                 });
         }
-
+        function atualizarMonstroHP() {
+            fetch('/monstro/retornarHP')
+                .then(res => res.text())
+                .then(hp => {
+                    document.getElementById('hpMonstro').innerText = hp;
+                });
+        }
         function verificarFimDeBatalha() {
             fetch('/monstro/retornarHP')
                 .then(res => res.text())
@@ -50,7 +61,7 @@
                         document.getElementById('logTurno').innerText += "\n Monstro derrotado!!";
                         setTimeout(() => {
                             window.location.href = "/batalha/finalizar";
-                        }, 2000);
+                        }, 4000);
                     } else {
                         fetch('/jogador/retornarHP')
                             .then(res => res.text())
@@ -60,7 +71,7 @@
                                     document.getElementById('logTurno').innerText += "\nVocê foi derrotado!! Fim de jogo.";
                                     setTimeout(() => {
                                         window.location.href = "/batalha/finalizar";
-                                    }, 2000);
+                                    }, 4000);
                                 }
                             });
                     }
@@ -74,16 +85,18 @@
                 .then(res => res.text())
                 .then(texto => {
                     document.getElementById('logTurno').innerText = texto;
-                    atualizarHP();
+                    atualizarJogadorHP();
+                    atualizarMonstroHP();
                     verificarFimDeBatalha();
                 })
                 .catch(err => {
                     document.getElementById('logTurno').innerText = "Erro no turno: " + err.message;
                 });
         }
-
-        atualizarHP();
-        setInterval(atualizarHP, 2000);
+        atualizarMonstroHP();
+        setInterval(atualizarMonstroHP, 2000);
+        atualizarJogadorHP();
+        setInterval(atualizarJogadorHP, 2000);
     </script>
 </body>
 </html>
