@@ -35,8 +35,12 @@ public class BatalhaRestController {
 
     @PutMapping("/turno")
     public String turno() {
-        String resultado;
+        if (monstroService.getmonstroAtual() == null || monstroService.getmonstroAtual().getHP() <= 0
+            || jogadorService.getJogador() == null || jogadorService.getJogador().getHP() <= 0) {
+            return "Batalha encerrada!";
+        }
 
+        String resultado;
         if (turnoDoJogador) {
             resultado = batalhaService.jogadorAtaque(monstroService.getmonstroAtual());
             resultado += jogadorService.getStatus();
@@ -44,9 +48,7 @@ public class BatalhaRestController {
             resultado = batalhaService.monstroAtaque(jogadorService.getJogador(), monstroService.getmonstroAtual());
             resultado += monstroService.getStatus();
         }
-
         turnoDoJogador = !turnoDoJogador;
-
         return resultado;
     }
     @PostMapping("/reset")
