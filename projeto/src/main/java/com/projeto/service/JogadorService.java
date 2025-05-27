@@ -21,9 +21,8 @@ public class JogadorService {
     }
 
     public void resetar() {
-        // Lógica para reiniciar o jogador
         jogadorAtual = new Jogador();
-        jogadorAtual.setHP(100); // Exemplo: HP inicial do jogador
+        jogadorAtual.setHP(100);
     }
 
     public int getJogadorHP() {
