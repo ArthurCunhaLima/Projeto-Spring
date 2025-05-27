@@ -7,31 +7,29 @@ import org.springframework.stereotype.Service;
 @Service
 public class JogadorService {
 
+    private Jogador jogadorAtual;
 
-    public JogadorService(){
-        this.jogador = new Jogador();
-    }
-    private Jogador jogador;
-
-    public Jogador getJogador(){
-        return this.jogador;
+    public Jogador getJogador() {
+        return jogadorAtual;
     }
 
-    public String getStatus(){
-        if (!jogador.Vivo() || jogador.getHP() <= 0){
-            this.jogador = null;
-            return "Jogador Perdeu, Fim de Jogo";
-        }else {
-            return "";
+    public String getStatus() {
+        if (jogadorAtual == null) {
+            return "Jogador não encontrado.";
         }
+        return "HP do Jogador: " + jogadorAtual.getHP();
     }
+
     public void resetar() {
-        this.jogador = new Jogador();
+        // Lógica para reiniciar o jogador
+        jogadorAtual = new Jogador();
+        jogadorAtual.setHP(100); // Exemplo: HP inicial do jogador
     }
-
-
 
     public int getJogadorHP() {
-        return getJogador().getHP();
+        if (jogadorAtual == null) {
+            return 0;
+        }
+        return jogadorAtual.getHP();
     }
 }
