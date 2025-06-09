@@ -89,7 +89,7 @@ public class MonstroService {
     public String getStatus(){
         if (!monstroAtual.Vivo() || monstroAtual.getHP() <= 0){
             this.monstroAtual = null;
-            return "Monstro Morreu!!";
+            return "\n\nMonstro Morreu!!";
         }else {
             return "";
         }

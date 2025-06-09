@@ -20,7 +20,7 @@ public class JogadorService {
     public String getStatus(){
         if (!jogador.Vivo() || jogador.getHP() <= 0){
             this.jogador = null;
-            return "Jogador Perdeu, Fim de Jogo";
+            return "\n\nJogador Perdeu, Fim de Jogo";
         }else {
             return "";
         }

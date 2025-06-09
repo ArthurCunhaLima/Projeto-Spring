@@ -75,7 +75,7 @@
                         batalhaEncerrada = true;
                         setTimeout(() => {
                             window.location.href = "/batalha/finalizar";
-                        }, 2000);
+                        }, 5500);
                     } else {
                         fetch('/jogador/retornarHP')
                             .then(res => res.text())
@@ -90,7 +90,7 @@
                                     batalhaEncerrada = true;
                                     setTimeout(() => {
                                         window.location.href = "/batalha/finalizar";
-                                    }, 3500);
+                                    }, 5500);
                                 }
                             });
                     }
