@@ -28,4 +28,13 @@ public class MonstroController {
         return monstroService.getmonstroAtual().getHP();
     }
 
+    @GetMapping("retornarNome")
+    public String retornarNome(){
+        return monstroService.getmonstroAtual().getNome();
+    }
+    @GetMapping("retornarEndpoint")
+    public String retornarEndpoint(){
+        return monstroService.getmonstroAtual().getEndpoint();
+    }
+
 }

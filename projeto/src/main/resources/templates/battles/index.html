@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1 class="nomeMonstro">Banshee Lamentosa</h1>
+    <h1 class="nomeMonstro" id="nomeMonstro"></h1>
 
     <div>
         <p class="hpMonstro">HP do Monstro:</p>
@@ -16,7 +16,7 @@
     </div>
 
 
-    <img th:src="@{/battles/bansheeLamentosa.png}" alt="Imagem da Batalha" width="1024" height="1024">
+    <img id="imagemMonstro"  alt="Imagem da Batalha" width="350" height="350">
     <div id="logTurno"></div>
     <div class="interface">
         <div class="informacao">
@@ -31,7 +31,7 @@
     </div>
     <ul>
         <li>
-        <h1>CLIQUE NO CÍRCULO PARA ATACAR</h1>
+        <h1 class="textoBotao">CLIQUE NO CÍRCULO PARA ATACAR</h1>
         <a href="" class="botaoAtaque" onclick="executarTurno(event)"></a>
         </li>
     </ul>
@@ -49,6 +49,20 @@
                     const hpFormatado = Math.max(parseInt(hp), 0);
                     document.getElementById('hpJogador').innerText = hpFormatado;
                 });
+        }
+        function nomeMonstro() {
+            fetch('/monstro/retornarNome')
+            .then(res => res.text())
+            .then(nomeMonstro => {
+                document.getElementById('nomeMonstro').innerText = nomeMonstro;
+            });}
+        function imagemMonstro() {
+            fetch('/monstro/retornarEndpoint')
+            .then(res => res.text())
+            .then(imagemMonstro => {
+                let rotaImagem = `/battles/${imagemMonstro}.png`;
+                document.getElementById('imagemMonstro').src = rotaImagem;
+            });
         }
 
        function atualizarMonstroHP() {
@@ -111,8 +125,13 @@
                         document.getElementById('logTurno').innerText = "Erro no turno: " + err.message;
                     });
             }
-            atualizarMonstroHP();
-            atualizarJogadorHP();
+            window.onload = function () {
+                imagemMonstro();
+                nomeMonstro();
+                atualizarMonstroHP();
+                atualizarJogadorHP();
+            };
+
     </script>
 </body>
 </html>

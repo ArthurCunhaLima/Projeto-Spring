@@ -21,23 +21,19 @@ public class BatalhaController {
         this.jogadorService = jogadorService;
         this.batalhaService = batalhaService;
     }
-    @GetMapping("home")
-    public String home() {
-        return "home/index";
+
+    @GetMapping("/")
+    public String batalhaMonstro() {
+        return "battles/index";
     }
+
     @GetMapping("/iniciar-jogo")
     public String iniciarJogo() {
         jogadorService.resetar();
         monstroService.resetar();
-        
         monstroService.gerarMonstroAleatorio();
         String nomePaginaMonstro = monstroService.getmonstroAtual().getEndpoint();
-        return "redirect:/batalha/" + nomePaginaMonstro;
-    }
-
-    @GetMapping("{nomeMonstro}")
-    public String batalhaMonstro(@PathVariable String nomeMonstro) {
-        return "battles/" + nomeMonstro + "/index";
+        return "redirect:/batalha/";
     }
 
     @GetMapping("finalizar")
