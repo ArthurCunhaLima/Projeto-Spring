@@ -24,6 +24,7 @@ public class BatalhaRestController {
         this.jogadorService = jogadorService;
         this.batalhaService = batalhaService;
     }
+    // PRECISA REFORMAR ISSO
     @PutMapping("ataqueJogador")
     public String ataquejogador(){
         return batalhaService.jogadorAtaque(monstroService.getmonstroAtual()) + "\n" + monstroService.getStatus() ;
@@ -49,10 +50,10 @@ public class BatalhaRestController {
 
         return resultado;
     }
+    //
     @PostMapping("/reset")
     public String resetTurno() {
-        turnoDoJogador = true;
-        return "";
+        return batalhaService.reset(turnoDoJogador);
     }
 
 

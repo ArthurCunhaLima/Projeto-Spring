@@ -25,6 +25,8 @@ public class Monstro {
         this.endpoint = endpoint;
     }
 
+
+
     public String getNome(){
         return this.nome;
     }
@@ -32,6 +34,7 @@ public class Monstro {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
 
     public int getHP() {
         return HP;
@@ -41,6 +44,8 @@ public class Monstro {
         this.HP = HP;
     }
 
+
+
     public String getNomeUltimate() {
         return nomeUltimate;
     }
@@ -48,6 +53,8 @@ public class Monstro {
     public void setNomeUltimate(String nomeUltimate) {
         this.nomeUltimate = nomeUltimate;
     }
+
+
 
     public int getDanoUltimate() {
         return danoUltimate;
@@ -57,6 +64,8 @@ public class Monstro {
         this.danoUltimate = danoUltimate;
     }
 
+
+
     public String getNomeAtaque() {
         return nomeAtaque;
     }
@@ -64,6 +73,8 @@ public class Monstro {
     public void setNomeAtaque(String nomeAtaque) {
         this.nomeAtaque = nomeAtaque;
     }
+
+
 
     public int getDanoAtaque() {
         return danoAtaque;
@@ -73,9 +84,13 @@ public class Monstro {
         this.danoAtaque = danoAtaque;
     }
 
+
+
     public boolean Vivo(){
         return HP > 0;
     }
+
+
 
     @Override
     public String toString(){

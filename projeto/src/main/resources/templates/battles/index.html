@@ -10,14 +10,11 @@
 <body>
     <h1 class="nomeMonstro" id="nomeMonstro"></h1>
 
+    <img id="imagemMonstro"  alt="Imagem da Batalha" width="350px" height="350px">
     <div>
         <p class="hpMonstro">HP do Monstro:</p>
         <p class="hpMonstro" id="hpMonstro"></p>
     </div>
-
-
-    <img id="imagemMonstro"  alt="Imagem da Batalha" width="350" height="350">
-    <div id="logTurno"></div>
     <div class="interface">
         <div class="informacao">
             <p>ATAQUE: </p>
@@ -29,9 +26,10 @@
             <p id ="hpJogador"></p>
         </div>
     </div>
+    <div id="logTurno"></div>
     <ul>
         <li>
-        <h1 class="textoBotao">CLIQUE NO CÍRCULO PARA ATACAR</h1>
+        <h1 class="textoBotao">CLIQUE NO CÍRCULO PARA ATACAR/AVANÇAR</h1>
         <a href="" class="botaoAtaque" onclick="executarTurno(event)"></a>
         </li>
     </ul>
@@ -88,7 +86,7 @@
                         batalhaEncerrada = true;
                         setTimeout(() => {
                             window.location.href = "/batalha/finalizar";
-                        }, 5500);
+                        }, 7000);
                     } else {
                         fetch('/jogador/retornarHP')
                             .then(res => res.text())
@@ -103,7 +101,7 @@
                                     batalhaEncerrada = true;
                                     setTimeout(() => {
                                         window.location.href = "/batalha/finalizar";
-                                    }, 5500);
+                                    }, 7000);
                                 }
                             });
                     }

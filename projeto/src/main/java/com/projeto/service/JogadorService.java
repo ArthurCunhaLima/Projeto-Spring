@@ -29,8 +29,6 @@ public class JogadorService {
         this.jogador = new Jogador();
     }
 
-
-
     public int getJogadorHP() {
         return getJogador().getHP();
     }

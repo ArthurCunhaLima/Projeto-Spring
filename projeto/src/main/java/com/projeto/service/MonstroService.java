@@ -94,5 +94,21 @@ public class MonstroService {
             return "";
         }
     }
+    public String retornar(){
+        return getmonstroAtual().toString();
+    }
+    public int retornarHP(){
+        return getmonstroAtual().getHP();
+    }
+    public String retornarNome(){
+        return getmonstroAtual().getNome();
+    }
+    public String retornarEndpoint(){
+        return getmonstroAtual().getEndpoint();
+    }
+
+
+
+
 }
 

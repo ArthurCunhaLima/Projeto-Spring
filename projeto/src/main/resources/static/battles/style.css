@@ -6,13 +6,11 @@
     font-size: 100%;
 }
 
-#logTurno{
-    text-align: center ;
-}
+
 .hpMonstro{
     color:white;
     display: inline-block;
-    font-size: 50%;
+    font-size: large;
 }
 
 h1{
@@ -39,6 +37,7 @@ body{
     width: 50%;
     border-radius: 150px;
     height: 10%;
+    font-size: medium;
 }
 .interface .informacao{
     display: flex;
@@ -71,7 +70,8 @@ body{
 }
 #logTurno{
     margin:20px;
-    font-size: 30%;
+    font-size: large;
     color:white;
-    width: 100%;
+    padding: 2px 5px;
+    text-align: center;
 }

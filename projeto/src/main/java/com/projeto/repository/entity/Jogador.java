@@ -27,6 +27,8 @@ public class Jogador {
     public boolean Vivo(){
         return HP > 0;
     }
+
+
     @Override
     public String toString() {
         return "HP : " + this.HP;

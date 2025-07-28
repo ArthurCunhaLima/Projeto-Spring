@@ -21,20 +21,20 @@ public class MonstroController {
     }
     @GetMapping("retornar")
     public String retornarMonstro(){
-        return monstroService.getmonstroAtual().toString();
+        return monstroService.retornar();
     }
     @GetMapping("retornarHP")
     public int retornarHP(){
-        return monstroService.getmonstroAtual().getHP();
+        return monstroService.retornarHP();
     }
 
     @GetMapping("retornarNome")
     public String retornarNome(){
-        return monstroService.getmonstroAtual().getNome();
+        return monstroService.retornarNome();
     }
     @GetMapping("retornarEndpoint")
     public String retornarEndpoint(){
-        return monstroService.getmonstroAtual().getEndpoint();
+        return monstroService.retornarEndpoint();
     }
 
 }

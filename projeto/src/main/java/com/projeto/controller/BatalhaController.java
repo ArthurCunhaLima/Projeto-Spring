@@ -14,8 +14,6 @@ public class BatalhaController {
     private final BatalhaService batalhaService;
 
 
-
-
     public BatalhaController (JogadorService jogadorService, MonstroService monstroService, BatalhaService batalhaService){
         this.monstroService = monstroService;
         this.jogadorService = jogadorService;
@@ -24,21 +22,16 @@ public class BatalhaController {
 
     @GetMapping("/")
     public String batalhaMonstro() {
-        return "battles/index";
+        return batalhaService.batalha();
     }
 
     @GetMapping("/iniciar-jogo")
     public String iniciarJogo() {
-        jogadorService.resetar();
-        monstroService.resetar();
-        monstroService.gerarMonstroAleatorio();
-        String nomePaginaMonstro = monstroService.getmonstroAtual().getEndpoint();
-        return "redirect:/batalha/";
+        return batalhaService.iniciarJogo(jogadorService,monstroService);
     }
 
     @GetMapping("finalizar")
     public String finalizar(){
-        return "finalizar/index";
+        return batalhaService.finalizar();
     }
-
 }
