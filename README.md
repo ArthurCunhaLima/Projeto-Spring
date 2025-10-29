@@ -1,5 +1,5 @@
 📚 Projeto Spring - Gerenciamento de Usuários
-Este projeto é uma aplicação web desenvolvida com Spring Boot e Thymeleaf, que permite o cadastro, listagem, atualização e exclusão de usuários. Foi desenvolvido com o objetivo de praticar os conceitos de CRUD, injeção de dependência, arquitetura em camadas, e uso do Spring Data JPA com banco de dados em memória (H2).
+Este projeto é uma aplicação web desenvolvida com Spring Boot e Thymeleaf, utilizando um RPG como plano de fundo. Foi desenvolvido com o objetivo de praticar os conceitos de CRUD, injeção de dependência, arquitetura em camadas, e uso do Spring Data JPA com banco de dados em memória (H2).
 
 🚀 Tecnologias Utilizadas
 ✅ Java 17
@@ -14,16 +14,6 @@ Este projeto é uma aplicação web desenvolvida com Spring Boot e Thymeleaf, qu
 
 ✅ Maven
 
-🧪 Funcionalidades
-🔹 Cadastro de usuários
-
-🔹 Listagem de todos os usuários
-
-🔹 Edição de dados
-
-🔹 Remoção de usuários
-
-🔹 Visualização de mensagens de sucesso ou erro
 
 🖼️ Interface (Thymeleaf)
 A aplicação utiliza Thymeleaf para renderizar as views do lado do servidor, com formulários para entrada de dados e feedback visual para as operações de CRUD.
